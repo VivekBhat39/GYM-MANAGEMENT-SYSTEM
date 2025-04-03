@@ -1,0 +1,10 @@
+Give me Website using Vite React App, use Bootstrap 5 CSS CDN, fro Gym Management
+1) Amin Login
+2) Admin can add gym memeber, adn assign plan
+3) Gym memeber can add / update / delete plans
+     a) Plan Name b) Duration 3) Fees
+4) User can check active users fromchart
+5) User can check whos plan is going to expire from reminder
+
+
+Give me only design
