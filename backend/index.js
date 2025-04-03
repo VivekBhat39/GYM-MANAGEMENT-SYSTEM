@@ -15,6 +15,10 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log(err));
 
+  app.get("/", (req, res)=>{
+    res.send("Welcome to Gyme Managemant App, \n By :- Vivek Bhat")
+  })
+
 app.use("/api/members", memberRoutes);
 app.use("/api/packages", packageRoutes);
 // app.use("/api/whatsapp", whatsappRoutes);
