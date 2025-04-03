@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import AdminLogin from './components/AdminLogin';
 import Dashboard from './components/Dashboard';
 import MemberManagement from './components/MemberManagement';
@@ -11,7 +11,19 @@ import Header from './components/Header';
 function App() {
   return (
     <Router>
-      <Header />
+      <MainContent />
+    </Router>
+  );
+}
+
+function MainContent() {
+  const location = useLocation();  // Get the current route path
+
+  return (
+    <>
+      {/* Hide Header only on Admin Login Page */}
+      {location.pathname !== '/' && <Header />}
+
       <div className="container mt-4">
         <Routes>
           <Route path="/" element={<AdminLogin />} />
@@ -22,7 +34,7 @@ function App() {
           <Route path="/plan-reminder" element={<PlanReminder />} />
         </Routes>
       </div>
-    </Router>
+    </>
   );
 }
 

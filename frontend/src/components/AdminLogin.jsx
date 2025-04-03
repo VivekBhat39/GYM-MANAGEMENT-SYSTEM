@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function AdminLogin() {
-
   let navigate = useNavigate();
 
-  function handleSumit() {
-    navigate("/dashboard")
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    const credential = localStorage.getItem("isLoggedIn")
+
+    if (credential) {
+      navigate("/dashboard")
+    }
+  }, [])
+
+  function handleSumit(e) {
+    e.preventDefault();
+
+    if (userName.toLowerCase() === 'admin' && password.toLowerCase() === 'admin') {
+
+      localStorage.setItem("isLoggedIn", true)
+      navigate("/dashboard")
+    } else {
+      alert("Invalid Credential")
+      setUserName('')
+      setPassword('')
+    }
   };
 
   return (
@@ -16,11 +36,11 @@ function AdminLogin() {
         <form>
           <div className="mb-3">
             <label htmlFor="username" className="form-label">Username</label>
-            <input type="text" className="form-control" id="username" required />
+            <input onChange={(e) => setUserName(e.target.value)} value={userName} type="text" className="form-control" id="username" required />
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control" id="password" required />
+            <input onChange={(e) => setPassword(e.target.value)} value={password} type="password" className="form-control" id="password" required />
           </div>
           <button onClick={handleSumit} type="submit" className="btn btn-primary w-100">Login</button>
         </form>

@@ -1,7 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Header() {
+
+    let navigate = useNavigate();
+
+    function handleLogout() {
+        localStorage.removeItem("isLoggedIn")
+        navigate('/')
+    };
+
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -26,6 +34,11 @@ function Header() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/plan-reminder">Plan Reminder</Link>
+                            </li>
+                            <li className="nav-item">
+                                <button onClick={handleLogout} className="btn btn-danger btn-sm ms-2 mt-1">
+                                    Logout
+                                </button>
                             </li>
                         </ul>
                     </div>
