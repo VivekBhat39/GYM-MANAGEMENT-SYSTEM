@@ -76,6 +76,12 @@ function MemberManagement() {
         .then((res) => {
           fetchMembers();
           // console.log(res.data)
+          setName('')
+          setPhone('')
+          setEmail('')
+          setSelectedPackage('')
+          setStartDate('')
+          setEndDate('')
         })
 
     } catch (error) {
